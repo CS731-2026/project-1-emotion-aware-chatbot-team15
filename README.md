@@ -1,59 +1,55 @@
-# COMPSYS 731 Human-Robot Interaction
+# Emotion-Aware Academic Assistant for Paper Reading Support
 
 [![Course](https://img.shields.io/badge/COMPSYS%20731-Human--Robot%20Interaction-blue)](https://www.auckland.ac.nz/)
-[![Topic](https://img.shields.io/badge/Topic-Emotion--aware%20Chatbot-purple)](#)
+[![Topic](https://img.shields.io/badge/Topic-Emotion--Aware%20Paper%20Reading%20Assistant-purple)](#)
 
-面向教育场景的情绪感知聊天机器人：在对话中识别学习者情绪与状态，并以更符合情境的方式回应（安抚、鼓励、引导与提示），提升交互体验与学习支持效果。
+An emotion-aware assistant that supports academic paper reading. It detects learners’ emotions and reading states during dialogue and adapts responses accordingly (empathize, encourage, clarify, scaffold), improving comprehension, engagement, and study outcomes.
 
 <p align="center">
-  <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=60" width="820" alt="Demo banner" />
+  <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=60" width="820" alt="Banner" />
 </p>
 
-## Emotion-Aware Academic Assistant for Paper Reading Support
+## Table of Contents
 
-## 目录
-
-- [项目亮点](#项目亮点)
+- [Highlights](#highlights)
 - [Demo](#demo)
-- [快速开始](#快速开始)
-- [使用方式](#使用方式)
-- [项目结构](#项目结构)
-- [系统设计](#系统设计)
-- [评估方式](#评估方式)
-- [路线图](#路线图)
-- [贡献者](#贡献者)
-- [致谢](#致谢)
+- [Quick Start](#quick-start)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [System Design](#system-design)
+- [Evaluation](#evaluation)
+- [Roadmap](#roadmap)
+- [Contributors](#contributors)
+- [Acknowledgements](#acknowledgements)
 
-## 项目亮点
+## Highlights
 
-- 情绪识别：从文本与对话上下文推断情绪/压力/困惑等维度（可替换模型与规则）
-- 情绪策略：根据识别结果选择应对策略（共情、澄清、分步指导、鼓励）
-- 教育场景：面向问答、作业辅导、概念讲解等交互任务
-- 可解释性：提供“为什么这样回应”的简要依据（可选）
+- Emotion/State inference from dialogue and reading context (confusion, frustration, confidence, curiosity).
+- Strategy selection that adapts explanations: empathize, clarify, step-by-step scaffolding, challenge/extend.
+- Paper-centric capabilities: section-aware Q&A, concept linking, figures/tables callouts, citation-aware references.
+- Optional explainability: brief rationale for the chosen strategy or extracted evidence snippets.
+- Modular design: swappable emotion models, retrieval pipelines, and response templates.
 
 ## Demo
 
 <p align="center">
-  <img src="https://placehold.co/1600x900/png?text=Demo+GIF+%28replace+with+your+screen+recording%29" width="820" alt="Demo gif（替换为自己的录屏动图）" />
+  <img src="https://placehold.co/1600x900/png?text=Demo+GIF+%28replace+with+your+screen+recording%29" width="820" alt="Demo gif placeholder" />
 </p>
 
-| 场景                | 示例                                        |
-| ------------------- | ------------------------------------------- |
-| 困惑（confused）    | 引导复述问题 → 给出最小可行提示 → 分步讲解  |
-| 挫败（frustrated）  | 共情 + 鼓励 → 降低任务难度 → 给出下一步行动 |
-| 高自信（confident） | 提供扩展阅读/挑战题 → 强化学习迁移          |
+| Scenario          | Example                                                                           |
+| ----------------- | --------------------------------------------------------------------------------- |
+| Confused          | Ask for restatement → smallest useful hint → step-by-step walkthrough             |
+| Frustrated        | Empathize + encouragement → reduce task complexity → propose concrete next step   |
+| Confident/Curious | Suggest deeper reading, related work, or small challenges to extend understanding |
 
-## 快速开始
+## Quick Start
 
-1. 克隆仓库
-2. 安装依赖
-3. 配置运行参数
-4. 启动服务或运行脚本
+This repository currently acts as a scaffold for the project. Replace the commands below with your actual setup when code is added.
 
-将下方命令替换为你们项目的实际方式：
+Typical examples:
 
 ```bash
-# 示例：Python
+# Python example
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -61,83 +57,94 @@ python app.py
 ```
 
 ```bash
-# 示例：Node.js
+# Node.js example
 npm install
 npm run dev
 ```
 
-## 使用方式
+## Usage
 
-### 输入输出约定
+### Inputs and Outputs
 
-- 输入：用户文本（可选：对话历史、课程上下文、题目/讲义片段）
-- 输出：机器人回复（可选：情绪标签、策略类型、置信度、解释）
+- Input: user query about a paper; optional chat history; optional paper/PDF snippet, section, or figure/table.
+- Output: assistant reply; optional emotion label, selected strategy, confidence, and short rationale or evidence snippet.
 
-### 交互示例
+### Interaction Examples
 
 ```text
-User: 我完全看不懂这个题目要我做什么……
-Bot: 我懂，这种感觉很挫败。我们先一起把题目拆成两步：1) 题目问的目标是什么；2) 已知条件有哪些。你把题干贴出来，我先帮你标出关键信息。
+User: I’m lost in the method section—what is the core idea behind the loss function?
+Assistant: That can be frustrating. Let’s unpack it in two steps: (1) what the model optimizes; (2) how the loss aligns with the objective. If you paste the loss formula or paragraph, I’ll highlight its components and link them to the model’s outputs.
 ```
 
-## 项目结构
+```text
+User: This paragraph is dense. Can you summarize the contribution and give me a one-sentence takeaway?
+Assistant: The authors propose a retrieval-augmented approach that improves sample efficiency on low-resource tasks. Takeaway: by injecting domain evidence at training and inference, they reduce hallucinations and improve generalization.
+```
 
-用自己的目录替换：
+## Project Structure
+
+Replace with your own layout when code is added:
 
 ```text
 .
-├── src/                  # 核心代码
-├── data/                 # 数据与样例
-├── models/               # 情绪识别/对话模型
-├── prompts/              # 提示词模板（如使用LLM）
-├── tests/                # 测试
+├── src/                  # core logic
+├── data/                 # datasets and samples
+├── models/               # emotion inference / dialogue components
+├── prompts/              # prompt templates (if using LLMs)
+├── tests/                # tests
 └── README.md
 ```
 
-## 系统设计
+## System Design
 
-### 端到端流程
+### End-to-End Flow
 
 ```mermaid
 flowchart LR
-  U[User] -->|text| A[Input Normalizer]
+  U[User] -->|query/snippet| A[Input Normalizer]
+  A --> P[Paper Parser / Section Index]
+  P --> R[Retriever]
   A --> B[Emotion / State Inference]
-  B --> C{Strategy Selector}
-  C -->|empathize| D[Response Generator]
-  C -->|clarify| D
-  C -->|step-by-step| D
-  D --> O[Output]
+  R --> C{Strategy Selector}
+  B --> C
+  C --> D[Response Generator]
+  D --> E[Evidence & Citations]
+  E --> O[Output]
   O --> U
 ```
 
-### 关键模块说明
+### Key Modules
 
-- Emotion / State Inference：情绪标签、强度与学习状态（困惑/挫败/无聊/自信等）
-- Strategy Selector：把情绪/任务类型映射到策略（共情、澄清、提示、分解、鼓励）
-- Response Generator：生成最终回复（可基于模板、检索增强或对话模型）
+- Paper Parser / Section Index: extract sections, figures/tables, equations, and build a section-aware index.
+- Emotion / State Inference: infer learner states such as confusion, frustration, boredom, confidence.
+- Strategy Selector: map emotion and task type to response strategies (empathize, clarify, hint, decompose, encourage, extend).
+- Response Generator: produce final replies using templates, retrieval-augmented generation, or dialogue models.
+- Evidence & Citations: surface cited sentences, figures, or sections to ground the response.
 
-### 截图与对比
+### Screenshots and Contrast
 
-| 情绪感知关闭                                                 | 情绪感知开启                                               |
+| Emotion Awareness Off                                        | Emotion Awareness On                                       |
 | ------------------------------------------------------------ | ---------------------------------------------------------- |
 | ![Off](https://placehold.co/720x420/png?text=Screenshot+Off) | ![On](https://placehold.co/720x420/png?text=Screenshot+On) |
 
-## 评估方式
+## Evaluation
 
-- 任务指标：问题解决率、平均轮次、完成时间、错误率
-- 主观量表：满意度、感知同理心、学习自我效能
-- 消融实验：无情绪识别 / 无策略选择 / 不同提示模板
+- Task metrics: comprehension question success rate, average turns, time-to-answer, error rate.
+- User-reported: satisfaction, perceived empathy, reading self-efficacy.
+- Ablations: no emotion inference vs no strategy selection vs template variants.
 
-## 路线图
+## Roadmap
 
-- [ ] 设计情绪标签与策略映射表
-- [ ] 增加可视化：对话中实时展示情绪与策略
-- [ ] 构建评估脚本与问卷模板
+- [ ] Define emotion labels and strategy mapping table tailored for paper reading.
+- [ ] Add visualization of emotion and strategy during dialogue.
+- [ ] Build evaluation scripts and survey templates for reading support.
+- [ ] Implement section-aware retrieval over PDFs with citation extraction.
+- [ ] Support figure/table-aware Q&A and math-aware explanations.
 
-## 贡献者
+## Contributors
 
 - Team 15
 
-## 致谢
+## Acknowledgements
 
-- COMPSYS 731 课程与助教团队
+- COMPSYS 731 course and teaching team
