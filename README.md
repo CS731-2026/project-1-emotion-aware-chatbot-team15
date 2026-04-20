@@ -315,7 +315,7 @@ This project uses **two separate Conda environments** as specified in the course
 ### Step 1 — Clone the Repository
 
 ```bash
-git clone https://github.com/<your-org>/emotion-aware-assistant.git
+git clone https://github.com/CS731-2026/emotion-aware-assistant-team15.git
 cd emotion-aware-assistant
 ```
 
